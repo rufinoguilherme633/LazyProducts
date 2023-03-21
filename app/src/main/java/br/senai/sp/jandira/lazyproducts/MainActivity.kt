@@ -4,13 +4,12 @@ import android.content.ClipData.Item
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -18,6 +17,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.senai.sp.jandira.lazyproducts.dao.repository.ProductRepository
@@ -90,14 +90,26 @@ fun Greeting(products: List<Product>) {
                             .padding(16.dp),
                         backgroundColor = Color.Magenta
                     ) {
-                        Column(modifier = Modifier.padding(8.dp)) {
+                        Row() {
+                            Card(modifier = Modifier.size(80.dp),shape = CircleShape) {
+
+                                    Image(
+                                        painter = product.image ?: painterResource(id = R.drawable.senai),
+                                        contentDescription = "",
+                                        modifier = Modifier.size(100.dp))
+
+                                
+                            }
                             Column(modifier = Modifier.padding(8.dp)) {
-                                Text(text = "${product.id} - ${product.name} - ${product.price}")
-                                Text(text = "${product.price}")
+                                Column(modifier = Modifier.padding(8.dp)) {
+                                    Text(text = "${product.id} - ${product.name} - ${product.price}")
+                                    Text(text = "${product.price}")
+
+                                }
 
                             }
-
                         }
+
                     }
                 }
             }
