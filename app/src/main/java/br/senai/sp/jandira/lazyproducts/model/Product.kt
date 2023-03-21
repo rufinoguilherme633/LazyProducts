@@ -1,9 +1,12 @@
 package br.senai.sp.jandira.lazyproducts.model
 
-class Product {
+import androidx.compose.ui.graphics.vector.ImageVector
 
-    var id = 0
-    var name= ""
-    var price = 0.0
-    var image = null
-}
+data class Product(
+
+    var id: Int = 0,
+    var name: String = "",
+    var description: String = "Ësta é a descrição do produto",
+    var price: Double = 0.0,
+    var image: ImageVector? = null
+)
