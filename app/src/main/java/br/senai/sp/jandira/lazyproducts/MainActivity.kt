@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -58,11 +59,14 @@ fun Greeting(products: List<Product>) {
     Surface(modifier = Modifier.fillMaxSize()) {
 
         Column() {
-            LazyRow(){
-                for (product in products){
+            LazyRow() {
+                for (product in products) {
 
                     item {
-                        Card(modifier = Modifier.fillMaxWidth().padding(16.dp),
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
                             backgroundColor = Color.Magenta
                         ) {
                             Column(modifier = Modifier.padding(8.dp)) {
@@ -75,27 +79,28 @@ fun Greeting(products: List<Product>) {
                             }
                         }
                     }
-                }}
-            LazyColumn(){
-                for (product in products){
+                }
+            }
+            LazyColumn() {
+                items(products) { product ->
 
-                    item {
-                        Card(modifier = Modifier.fillMaxWidth().padding(16.dp),
-                            backgroundColor = Color.Magenta
-                        ) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        backgroundColor = Color.Magenta
+                    ) {
+                        Column(modifier = Modifier.padding(8.dp)) {
                             Column(modifier = Modifier.padding(8.dp)) {
-                                Column(modifier = Modifier.padding(8.dp)) {
-                                    Text(text = "${product.id} - ${product.name} - ${product.price}")
-                                    Text(text = "${product.price}")
-
-                                }
+                                Text(text = "${product.id} - ${product.name} - ${product.price}")
+                                Text(text = "${product.price}")
 
                             }
+
                         }
                     }
-                }}
-
-
+                }
+            }
 
         }
 //        Column() {
